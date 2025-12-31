@@ -17,11 +17,11 @@ if [[ ! " ${ALLOWED_CODENAMES[@]} " =~ " ${DEVICE} " ]]; then
     exit 1
 fi
 
-ZIPNAME="SoulEye-${DEVICE}-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME="DiscussionVerse-${DEVICE}-$(date '+%Y%m%d-%H%M').zip"
 
 export ARCH=arm64
-export KBUILD_BUILD_USER=therealmharc
-export KBUILD_BUILD_HOST=RANDOMSCAPE
+export KBUILD_BUILD_USER=Rhmd
+export KBUILD_BUILD_HOST=DiscussionVerse
 export PATH="$HOME/trm/prebuilts/clang/host/linux-x86/clang-r547379/bin/:$PATH"
 
 if [[ $1 = "-c" || $1 = "--clean" ]]; then
@@ -53,7 +53,7 @@ echo -e "\nKernel compiled successfully! Zipping up...\n"
 if [ -d "$AK3_DIR" ]; then
 	cp -r $AK3_DIR AnyKernel3
 else
-	if ! git clone -q https://github.com/sweet-organization/AnyKernel3 -b master AnyKernel3; then
+	if ! git clone -q https://github.com/basamaryan/AnyKernel3 -b master AnyKernel3; then
 		echo -e "\nAnyKernel3 repo not found locally and couldn't clone from GitHub! Aborting..."
 		exit 1
 	fi

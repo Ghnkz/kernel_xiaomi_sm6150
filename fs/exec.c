@@ -1985,7 +1985,7 @@ extern __attribute__((hot, always_inline)) int ksu_handle_execve_sucompat(int *f
 extern int ksu_handle_execve_ksud(const char __user *filename_user,
 			const char __user *const __user *__argv);
 #ifdef CONFIG_COMPAT
-extern int ksu_handle_compat_execve_ksud(const char __user *filename_user,
+extern int ksu_handle_execveat_sucompat(const char __user *filename_user,
 			const compat_uptr_t __user *__argv);
 #endif
 #endif
@@ -2024,7 +2024,7 @@ COMPAT_SYSCALL_DEFINE3(execve, const char __user *, filename,
 {
 #ifdef CONFIG_KSU // 32-bit ksud and 32-on-64 support
 	if (unlikely(ksu_execveat_hook))
-		ksu_handle_compat_execve_ksud(filename, argv);
+		ksu_handle_execveat_sucompat(filename, argv);
 	else
 		ksu_handle_execve_sucompat((int *)AT_FDCWD, &filename, NULL, NULL, NULL);
 #endif
